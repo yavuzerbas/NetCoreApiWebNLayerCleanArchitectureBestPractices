@@ -13,7 +13,7 @@ namespace App.API.Controllers
             return result.Status switch
             {
                 System.Net.HttpStatusCode.NoContent => NoContent(),
-                System.Net.HttpStatusCode.Created => Created(result.UrlAsCreated, result.Data),
+                System.Net.HttpStatusCode.Created => Created(result.UrlAsCreated, result),
                 _ => new ObjectResult(result) { StatusCode = result.Status.GetHashCode() }
             };
         }
