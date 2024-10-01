@@ -1,5 +1,6 @@
 ﻿using App.Repositories;
 using App.Repositories.Products;
+using App.Services.ExceptionHandlers;
 using App.Services.Products.Create;
 using App.Services.Products.Update;
 using AutoMapper;
@@ -59,6 +60,12 @@ namespace App.Services.Products
             if (anyProduct)
             {
                 return ServiceResult<CreateProductResponse>.Fail("Product already exists", HttpStatusCode.BadRequest);
+            }
+
+            //intentional mock trigger to practice exception handler
+            if (request.Name == "trigger_exception")
+            {
+                throw new CriticalException("An exception occured!");
             }
 
             var product = new Product()

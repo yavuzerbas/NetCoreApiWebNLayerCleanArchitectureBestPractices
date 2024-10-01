@@ -9,7 +9,7 @@ namespace App.Services.Products.Create
             //name validation
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("Product name is required")
-                .Length(3, 10).WithMessage("Product name should be between 3-10 chars");
+                .Length(3, 20).WithMessage("Product name should be between 3-20 chars");
             //price validation
             RuleFor(x => x.Price)
                 .GreaterThan(0).WithMessage("Product price should be greater than 0");
