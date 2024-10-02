@@ -3,6 +3,7 @@ using App.Repositories.Products;
 using App.Services.ExceptionHandlers;
 using App.Services.Products.Create;
 using App.Services.Products.Update;
+using App.Services.Products.UpdateStock;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
@@ -91,6 +92,12 @@ namespace App.Services.Products
                 return ServiceResult.Fail("Product not found!", HttpStatusCode.NotFound);
             }
 
+            var isNameExistInOtherRows = await productRepository.Where(x => x.Name == request.Name && x.Id != id).AnyAsync();
+            if (isNameExistInOtherRows)
+            {
+                return ServiceResult.Fail("Product name already exists", HttpStatusCode.BadRequest);
+            }
+
             product.Name = request.Name;
             product.Price = request.Price;
             product.Stock = request.Stock;
@@ -108,7 +115,7 @@ namespace App.Services.Products
             {
                 return ServiceResult.Fail($"Product {request.ProductId} does not exist");
             }
-            product.Stock = request.Quantity;
+            product.Stock = request.Stock;
             productRepository.Update(product);
             await unitOfWork.SaveChangesAsync();
 
