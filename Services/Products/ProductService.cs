@@ -69,12 +69,14 @@ namespace App.Services.Products
                 throw new CriticalException("An exception occured!");
             }
 
-            var product = new Product()
+            //manual mapping
+            /*var product = new Product()
             {
                 Name = request.Name,
                 Price = request.Price,
                 Stock = request.Stock,
-            };
+            };*/
+            var product = mapper.Map<Product>(request);
 
             await productRepository.AddAsync(product);
             await unitOfWork.SaveChangesAsync();
@@ -98,9 +100,11 @@ namespace App.Services.Products
                 return ServiceResult.Fail("Product name already exists", HttpStatusCode.BadRequest);
             }
 
-            product.Name = request.Name;
+            //manual mapping
+            /*product.Name = request.Name;
             product.Price = request.Price;
             product.Stock = request.Stock;
+*/          mapper.Map(request, product);
 
             productRepository.Update(product);
             await unitOfWork.SaveChangesAsync();
