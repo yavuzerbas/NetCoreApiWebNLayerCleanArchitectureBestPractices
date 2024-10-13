@@ -1,6 +1,7 @@
 ﻿using App.Repositories.Categories;
 using App.Repositories.Interceptors;
 using App.Repositories.Products;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ namespace App.Repositories.Extensions
     {
         public static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration configuration)
         {
+            services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
             services.AddDbContext<AppDbContext>(options =>
             {
                 var connectionStrings = configuration.GetSection
