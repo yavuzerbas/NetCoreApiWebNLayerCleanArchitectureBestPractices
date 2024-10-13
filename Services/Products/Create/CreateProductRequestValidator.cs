@@ -13,6 +13,9 @@ namespace App.Services.Products.Create
             //price validation
             RuleFor(x => x.Price)
                 .GreaterThan(0).WithMessage("Product price should be greater than 0");
+            //propduct category validation
+            RuleFor(x => x.CategoryId)
+                .GreaterThan(0).WithMessage("Category id should be greater than 0");
             //stock validation
             RuleFor(x => x.Stock)
                 .InclusiveBetween(1, 100).WithMessage("Product stock can be between 1-100");
