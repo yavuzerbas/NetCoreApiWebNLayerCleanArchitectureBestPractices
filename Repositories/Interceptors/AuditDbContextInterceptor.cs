@@ -30,7 +30,14 @@ namespace App.Repositories.Interceptors
             foreach (var entityEntry in eventData.Context.ChangeTracker.Entries().ToList())
             {
                 if (entityEntry.Entity is not IAuditEntity auditEntity) continue;
-                Behaviors[entityEntry.State](eventData.Context, auditEntity);
+                if (Behaviors.TryGetValue(entityEntry.State, out var behavior))
+                {
+                    behavior(eventData.Context, auditEntity);
+                }
+                /*if (entityEntry.Entity is EntityState.Added || entityEntry.Entity is EntityState.Modified)
+                {
+                    Behaviors[entityEntry.State](eventData.Context, auditEntity);
+                }*/
                 #region without using delegate
                 /*switch (entityEntry.State)
                 {

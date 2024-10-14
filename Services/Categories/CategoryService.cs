@@ -78,12 +78,7 @@ namespace App.Services.Categories
 
         public async Task<ServiceResult> UpdateAsync(UpdateCategoryRequest request)
         {
-            var category = await categoryRepository.GetByIdAsync(request.Id);
-            if (category == null)
-            {
-                return ServiceResult
-                    .Fail("Category not found", System.Net.HttpStatusCode.NotFound);
-            }
+
             var anyCategory = await categoryRepository.Where(x => x.Name == request.Name && x.Id != request.Id).AnyAsync();
             if (anyCategory)
             {
@@ -91,7 +86,8 @@ namespace App.Services.Categories
                     "Category name already exist in the db.",
                     System.Net.HttpStatusCode.NotFound);
             }
-            category = mapper.Map(request, category);
+            var category = mapper.Map<Category>(request);
+
             categoryRepository.Update(category);
             await unitOfWork.SaveChangesAsync();
 
@@ -101,13 +97,8 @@ namespace App.Services.Categories
         public async Task<ServiceResult> DeleteAsync(int id)
         {
             var category = await categoryRepository.GetByIdAsync(id);
-            if (category == null)
-            {
-                return ServiceResult
-                    .Fail("Category cannot be found!", System.Net.HttpStatusCode.NotFound);
-            }
 
-            categoryRepository.Delete(category);
+            categoryRepository.Delete(category); //checked null case in NotFoundFilter
             await unitOfWork.SaveChangesAsync();
 
             return ServiceResult.Success(System.Net.HttpStatusCode.NoContent);

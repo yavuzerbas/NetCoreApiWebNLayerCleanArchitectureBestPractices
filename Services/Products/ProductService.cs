@@ -50,7 +50,6 @@ namespace App.Services.Products
                 return ServiceResult<ProductDto>.Fail("Product not found", HttpStatusCode.NotFound);
             }
 
-            //var productAsDto = new ProductDto(product!.Id, product!.Name, product!.Price * 1.20m, product!.Stock);
             var productAsDto = mapper.Map<ProductDto>(product);
             return ServiceResult<ProductDto>.Success(productAsDto);
         }
@@ -69,13 +68,6 @@ namespace App.Services.Products
                 throw new CriticalException("An exception occured!");
             }
 
-            //manual mapping
-            /*var product = new Product()
-            {
-                Name = request.Name,
-                Price = request.Price,
-                Stock = request.Stock,
-            };*/
             var product = mapper.Map<Product>(request);
 
             await productRepository.AddAsync(product);
@@ -87,24 +79,14 @@ namespace App.Services.Products
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateProductRequest request)
         {
-            var product = await productRepository.GetByIdAsync(id);
-
-            if (product == null)
-            {
-                return ServiceResult.Fail("Product not found!", HttpStatusCode.NotFound);
-            }
-
             var isNameExistInOtherRows = await productRepository.Where(x => x.Name == request.Name && x.Id != id).AnyAsync();
             if (isNameExistInOtherRows)
             {
                 return ServiceResult.Fail("Product name already exists", HttpStatusCode.BadRequest);
             }
 
-            //manual mapping
-            /*product.Name = request.Name;
-            product.Price = request.Price;
-            product.Stock = request.Stock;
-*/          mapper.Map(request, product);
+            var product = mapper.Map<Product>(request);
+            product.Id = id;
 
             productRepository.Update(product);
             await unitOfWork.SaveChangesAsync();
@@ -128,11 +110,6 @@ namespace App.Services.Products
         public async Task<ServiceResult> DeleteAsync(int id)
         {
             var product = await productRepository.GetByIdAsync(id);
-
-            if (product == null)
-            {
-                return ServiceResult.Fail("Product not found!", HttpStatusCode.NotFound);
-            }
 
             productRepository.Delete(product);
             await unitOfWork.SaveChangesAsync();
