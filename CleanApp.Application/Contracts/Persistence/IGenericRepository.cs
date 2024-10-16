@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace CleanApp.Application.Contracts.Persistance
+namespace CleanApp.Application.Contracts.Persistence
 {
     public interface IGenericRepository<T, TId> where T : class where TId : struct
     {

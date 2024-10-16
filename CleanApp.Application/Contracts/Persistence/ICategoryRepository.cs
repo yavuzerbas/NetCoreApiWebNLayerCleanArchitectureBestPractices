@@ -1,6 +1,6 @@
 ﻿using CleanApp.Domain.Entities;
 
-namespace CleanApp.Application.Contracts.Persistance
+namespace CleanApp.Application.Contracts.Persistence
 {
     public interface ICategoryRepository : IGenericRepository<Category, int>
     {

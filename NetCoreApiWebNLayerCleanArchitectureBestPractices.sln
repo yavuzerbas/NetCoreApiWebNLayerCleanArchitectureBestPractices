@@ -19,17 +19,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C6AA9DB8-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{738F8617-095A-4F92-A323-24DA4EE6CFF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanApp.Domain", "CleanApp.Domain\CleanApp.Domain.csproj", "{BA6B88B0-EE6A-4955-BCA2-7AC2DD7212BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanApp.Domain", "CleanApp.Domain\CleanApp.Domain.csproj", "{BA6B88B0-EE6A-4955-BCA2-7AC2DD7212BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanApp.Application", "CleanApp.Application\CleanApp.Application.csproj", "{E40C91E6-7797-41A7-A082-460E4DF01A96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanApp.Application", "CleanApp.Application\CleanApp.Application.csproj", "{E40C91E6-7797-41A7-A082-460E4DF01A96}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{9B64AB1C-CF12-4030-AEDD-31D80B9EEBC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanApp.Persistance", "CleanApp.Persistance\CleanApp.Persistance.csproj", "{017318C7-EB62-4E43-B72F-68D057450478}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanApp.Persistence", "CleanApp.Persistance\CleanApp.Persistence.csproj", "{017318C7-EB62-4E43-B72F-68D057450478}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{12FA7A58-0618-4CD5-8D19-41E890CBDA99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanApp.API", "CleanApp.API\CleanApp.API.csproj", "{8754D1E4-72BC-41AB-A8D4-031396688A25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanApp.API", "CleanApp.API\CleanApp.API.csproj", "{8754D1E4-72BC-41AB-A8D4-031396688A25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

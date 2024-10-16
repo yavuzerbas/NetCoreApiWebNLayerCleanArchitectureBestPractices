@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CleanApp.Application.Contracts.Persistance;
+using CleanApp.Application.Contracts.Persistence;
 using CleanApp.Application.Features.Products.Create;
 using CleanApp.Application.Features.Products.Dto;
 using CleanApp.Application.Features.Products.Update;

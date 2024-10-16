@@ -1,4 +1,4 @@
-﻿namespace CleanApp.Application.Contracts.Persistance
+﻿namespace CleanApp.Application.Contracts.Persistence
 {
     public interface IUnitOfWork
     {
