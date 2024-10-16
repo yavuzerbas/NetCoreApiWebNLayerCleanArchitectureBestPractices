@@ -16,10 +16,7 @@ namespace CleanApp.Application.Extensions
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
-            //TODO : Move Api layer
-            //services.AddScoped(typeof(NotFoundFilter<,>));
-            //services.AddExceptionHandler<CriticalExceptionHandler>();
-            //services.AddExceptionHandler<GlobalExceptionHandler>();
+
             services.AddFluentValidationAutoValidation();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
