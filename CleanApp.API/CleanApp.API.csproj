@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CleanApp.Application\CleanApp.Application.csproj" />
+    <ProjectReference Include="..\CleanApp.Caching\CleanApp.Caching.csproj" />
     <ProjectReference Include="..\CleanApp.Persistance\CleanApp.Persistence.csproj" />
   </ItemGroup>
 
