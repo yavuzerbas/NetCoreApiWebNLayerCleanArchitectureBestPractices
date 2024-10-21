@@ -1,3 +1,3 @@
 ﻿namespace CleanApp.Domain.Events;
 
-public interface IEvent;
+public interface IEvent : IEventOrMessage;

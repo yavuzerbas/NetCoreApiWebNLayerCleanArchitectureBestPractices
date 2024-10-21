@@ -7,11 +7,11 @@ namespace CleanApp.Application.Contracts.ServiceBus
         /**
          *Sends to the exchange
          */
-        Task PublishAsync<T>(T @event, CancellationToken cancellation = default) where T : IMessage, IEvent;
+        Task PublishAsync<T>(T @event, CancellationToken cancellation = default) where T : IEventOrMessage;
 
         /**
          *Sends directly to the queue 
         */
-        Task SendAsync<T>(T message, string queueName, CancellationToken cancellation = default) where T : IMessage, IEvent;
+        Task SendAsync<T>(T message, string queueName, CancellationToken cancellation = default) where T : IEventOrMessage;
     }
 }

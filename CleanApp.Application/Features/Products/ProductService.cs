@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using CleanApp.Application.Contracts.Caching;
 using CleanApp.Application.Contracts.Persistence;
+using CleanApp.Application.Contracts.ServiceBus;
 using CleanApp.Application.Features.Products.Create;
 using CleanApp.Application.Features.Products.Dto;
 using CleanApp.Application.Features.Products.Update;
 using CleanApp.Application.Features.Products.UpdateStock;
 using CleanApp.Domain.Entities;
+using CleanApp.Domain.Events;
 using CleanApp.Domain.Exceptions;
 using System.Net;
 
@@ -15,7 +17,8 @@ namespace CleanApp.Application.Features.Products
         IProductRepository productRepository,
         IUnitOfWork unitOfWork,
         IMapper mapper,
-        ICacheService cacheService) : IProductService
+        ICacheService cacheService,
+        IServiceBus busService) : IProductService
     {
 
         private const string ProductListCacheKey = "ProductListCacheKey";
@@ -91,6 +94,8 @@ namespace CleanApp.Application.Features.Products
 
             await productRepository.AddAsync(product);
             await unitOfWork.SaveChangesAsync();
+
+            await busService.PublishAsync(new ProductAddedEvent(product.Id, product.Name, product.Price));
 
             return ServiceResult<CreateProductResponse>
                 .SuccessAsCreated(new CreateProductResponse(product!.Id), $"api/products/{product.Id}");
