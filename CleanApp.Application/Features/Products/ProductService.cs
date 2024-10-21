@@ -59,7 +59,7 @@ namespace CleanApp.Application.Features.Products
             var productsAsDto = mapper.Map<List<ProductDto>>(products);
             return ServiceResult<List<ProductDto>>.Success(productsAsDto);
         }
-        public async Task<ServiceResult<ProductDto>> GetByIdAsync(int id)
+        public async Task<ServiceResult<ProductDto?>> GetByIdAsync(int id)
         {
             var product = await productRepository.GetByIdAsync(id);
 
